@@ -1,0 +1,70 @@
+# For more information: https://laravel.com/docs/cate
+version: "3"
+services:
+  fm-webserver:
+    image: fm-webserver:latest
+    container_name: fm-webserver
+    hostname: fm-webserver
+    build:
+      context: ./.docker/nginx
+      dockerfile: Dockerfile
+    volumes:
+      - ./public:/var/www/public
+    ports:
+      - 8080:80
+    networks:
+      - cate
+    depends_on:
+      - database
+
+  cate-app:
+    container_name: cate-app
+    hostname: cate-app
+    build:
+      context: .
+      args:
+        - user=$USER
+    volumes:
+      - .:/var/www
+    networks:
+      - cate
+    depends_on:
+      - database
+
+  database:
+    image: "mariadb:10.2"
+    ports:
+      - "3306:3306"
+    container_name: "cate-database"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "cate_db"
+      MYSQL_USER: "cate"
+      MYSQL_PASSWORD: "root"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - "catemariadb:/var/lib/mysql"
+    networks:
+      - cate
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-proot"]
+      retries: 3
+      timeout: 5s
+
+  redis:
+    image: redis:4.0
+    container_name: cate-redis
+    env_file: .env
+    ports:
+      - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - "cate"
+
+networks:
+  cate:
+    driver: bridge
+volumes:
+  catemariadb:
+    driver: local

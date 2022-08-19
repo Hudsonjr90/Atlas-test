@@ -1,0 +1,32 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+@import "mixins";
+@import "colors";
+@import "fonts";
+@import "grid";
+@import "margins";
+@import "container";
+@import "flex";
+
+@import "default";
+
+@import "pokemonColors";
+
+// Components
+@import './components/fmButton';
+@import './components/fmCarousel';
+
+// Pages
+@import './views/home';
+@import './views/pokedexList.scss';
+
+.fm-cate{
+  font-size: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

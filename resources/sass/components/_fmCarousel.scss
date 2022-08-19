@@ -1,0 +1,59 @@
+.carousel {
+  $imageHeigt: 420px;
+
+  @extend .flex-align-center;
+  position: relative;
+
+  &__images {
+    @extend .flex-column;
+    height: $imageHeigt;
+    overflow-y: hidden;
+
+    .carousel__image-item {
+      width: $imageHeigt;
+      height: $imageHeigt;
+    }
+
+  }
+
+  &__control {
+    @extend .flex-column;
+    gap: 15px;
+    position: absolute;
+
+    right: -20px;
+
+    .carousel__control-item {
+      content: '';
+      cursor: pointer;
+
+      display: block;
+      position: relative;
+
+      width: 10px;
+      height: 10px;
+
+      border-radius: 50%;
+      background: map-get($colors, 1);
+
+      &--checked {
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:before {
+          content: '';
+          position: absolute;
+
+          width: 5px;
+          height: 5px;
+          background: map-get($colors, 2);
+
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}

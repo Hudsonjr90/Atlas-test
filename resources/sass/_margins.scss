@@ -1,0 +1,55 @@
+$margin-sizes: (
+  auto: auto,
+  5: 0.5,
+  8: 0.8,
+  16: 1.6,
+  24: 2.4,
+  32: 3.2,
+  42: 4.2,
+  50: 5,
+  64: 6.4,
+  101: 10.1
+);
+
+$spaces: (
+  margin: 'm',
+  padding: 'p',
+);
+
+@each $spaceName, $spaceInitial in $spaces {
+  @each $size, $value in $margin-sizes {
+    $propValue: #{$value}rem;
+
+    @if $value == 'auto' {
+      $propValue: #{$value};
+    }
+
+    .fm-#{$spaceInitial}l-#{$size} {
+      #{$spaceName}-left: #{$propValue};
+    }
+
+    .fm-#{$spaceInitial}r-#{$size} {
+      #{$spaceName}-right: #{$propValue};
+    }
+
+    .fm-#{$spaceInitial}x-#{$size} {
+      #{$spaceName}: 0 #{$propValue};
+    }
+
+    .fm-#{$spaceInitial}t-#{$size} {
+      #{$spaceName}-top: #{$propValue};
+    }
+
+    .fm-#{$spaceInitial}b-#{$size} {
+      #{$spaceName}-bottom: #{$propValue};
+    }
+
+    .fm-#{$spaceInitial}y-#{$size} {
+      #{$spaceName}: #{$propValue} 0;
+    }
+
+    .fm-#{$spaceInitial}a-#{$size} {
+      #{$spaceName}: #{$propValue};
+    }
+  }
+}

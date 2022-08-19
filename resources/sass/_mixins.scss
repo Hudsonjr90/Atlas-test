@@ -1,0 +1,46 @@
+$screen-sizes: (
+  "mobile-m": 375,
+  "mobile": 425,
+  "tablet": 768,
+  "desktop": 1127,
+  "largger": 1728,
+);
+
+@mixin screen ($size, $max: true) {
+  $type: 'min';
+  @if $max {
+    $type: 'max';
+  }
+  @media screen and (#{$type}-width: #{$size}px) {
+    @content;
+  }
+}
+
+@mixin media($resolution, $minOrMax: "min") {
+  $size: map-get($screen-sizes, $resolution);
+
+  @if (index($minOrMax, '<')) {
+    $size: $size - 1;
+  } @else if (index($minOrMax, '>')) {
+    $size: $size + 1;
+  }
+
+
+  @if ($minOrMax == "min") {
+    @include screen($size, false) {
+      @content
+    }
+  } @else if ($minOrMax == ">") {
+    @include screen($size, false) {
+      @content
+    }
+  } @else if ($minOrMax == "max") {
+    @include screen($size) {
+      @content
+    }
+  } @else if ($minOrMax == "<") {
+    @include screen($size) {
+      @content
+    }
+  }
+}

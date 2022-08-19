@@ -1,0 +1,59 @@
+body.home-background {
+  background-image: url('/images/home-background.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.home {
+  @extend .flex;
+  gap: 20px;
+
+  @extend .fm-mt-101;
+
+  &__title, &__description {
+    @extend .fm-text-color-1;
+    @extend .fm-font-weight-regular;
+  }
+
+  &__title {
+    @extend .fm-ml-8;
+    @extend .fm-font-size-30;
+
+    text-align: end;
+    font-weight: map-get($font-weights, 'bold');
+    @include media('tablet', 'min') {
+      text-align: start;
+      font-weight: map-get($font-weights, 'regular');
+    }
+  }
+
+  &__description {
+    @extend .fm-font-align-end;
+    line-height: 1.3;
+
+    font-size: #{map-get($font-sizes, 20)}px;
+    margin-top: #{map-get($margin-sizes, 50)}rem;
+    @include media('tablet', 'min') {
+      font-size: #{map-get($font-sizes, 16)}px;
+      margin-top: #{map-get($margin-sizes, 32)}rem;
+    }
+  }
+
+  &__button-container {
+    width: 100%;
+    @extend .flex-end;
+
+    margin-top: #{map-get($margin-sizes, 42)}rem;
+    @include media('tablet', 'min') {
+      margin-top: #{map-get($margin-sizes, 101)}rem;
+    }
+  }
+
+  &__carousel {
+    @include media('tablet', 'max') {
+      display: none;
+    }
+  }
+}

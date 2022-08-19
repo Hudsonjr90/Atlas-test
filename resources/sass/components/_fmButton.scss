@@ -1,0 +1,26 @@
+.home-button {
+  border: none;
+  border-radius: 6px;
+  background: #363636;
+  box-shadow: 1px 0 8px 2px rgba(map-get($colors, 1), 0.1);
+
+  @extend .fm-text-color-1;
+  @extend .fm-font-size-14;
+  @extend .fm-font-align-center;
+
+  width: 100%;
+  padding: 13px 55px;
+  font-weight: map-get($font-weights, 'bold');
+
+  transition: color 0.2s;
+
+  @include media('tablet', '>') {
+    width: initial;
+    padding: 18px 55px;
+    font-weight: map-get($font-weights, 'regular');
+  }
+
+  &:hover {
+    color: rgba(map-get($colors, 1), 0.7)
+  }
+}

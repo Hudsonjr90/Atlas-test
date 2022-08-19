@@ -1,0 +1,40 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+  gap: 20px;
+
+  @for $fill from 1 through 12 {
+    .grid-{
+      &#{$fill} {
+        grid-column: span #{$fill};
+
+        @for $s from 1 through 12 {
+          &.grid-start-#{$s} {
+            grid-column-start: #{$s};
+            grid-column-end: span #{$fill}
+          }
+        }
+      }
+    }
+  }
+
+  @include media("tablet", "max") {
+    grid-template-columns: repeat(6,1fr);
+
+    @for $fill from 1 through 6 {
+      .m-grid-{
+        &#{$fill} {
+          grid-column: span #{$fill};
+
+          @for $s from 1 through 6 {
+            &.m-grid-start-#{$s} {
+              grid-column-start: #{$s};
+              grid-column-end: span 6
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

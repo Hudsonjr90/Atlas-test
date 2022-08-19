@@ -1,0 +1,67 @@
+$gapSizes: 1, 2, 3, 4;
+
+.flex {
+  display: flex;
+
+  &-column {
+    @extend .flex;
+    flex-direction: column;
+  }
+
+  &-center {
+    @extend .flex;
+    justify-content: center;
+  }
+
+  &-start {
+    @extend .flex;
+    justify-content: flex-start;
+  }
+
+  &-end {
+    @extend .flex;
+    justify-content: flex-end;
+  }
+
+  &-align-center {
+    @extend .flex;
+    align-items: center;
+  }
+
+  &-align-start {
+    @extend .flex;
+    align-items: flex-start;
+  }
+
+  &-align-end {
+    @extend .flex;
+    align-items: flex-end;
+  }
+
+  &-center-center {
+    @extend .flex-center;
+    @extend .flex-align-center;
+  }
+
+  &-space-between {
+    @extend .flex;
+    justify-content: space-between;
+  }
+
+  &-space-around {
+    @extend .flex;
+    justify-content: space-around;
+  }
+
+  &-space-evenly {
+    @extend .flex;
+    justify-content: space-evenly;
+  }
+
+  @each $size in $gapSizes {
+    &-gap-#{$size} {
+      gap: #{$size}rem;
+    }
+  }
+
+}
